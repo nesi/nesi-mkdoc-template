@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+         <loc>https://github.com/nesi/support-docs-concept/</loc>
+         <lastmod>2023-10-05</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://github.com/nesi/support-docs-concept/format/</loc>
+         <lastmod>2023-10-05</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://github.com/nesi/support-docs-concept/assets/glossary/</loc>
+         <lastmod>2023-10-05</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://github.com/nesi/support-docs-concept/assets/glossary/Glossary/</loc>
+         <lastmod>2023-10-05</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://github.com/nesi/support-docs-concept/assets/glossary/dictionary/</loc>
+         <lastmod>2023-10-05</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://github.com/nesi/support-docs-concept/assets/glossary/snippets/</loc>
+         <lastmod>2023-10-05</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+</urlset>
