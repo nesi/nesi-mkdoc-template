@@ -8,9 +8,9 @@ site_url: https://docs.nesi.org.nz/
 theme:
   name: material
   custom_dir: overrides
-  favicon: assets/icons/favicon.ico
+  favicon: assets/icons/favicon_nesi.ico
   language: en
-  logo: assets/icons/logo.svg
+  logo: assets/icons/logo_nesi.svg
   palette:
     - primary: custom
       scheme: default
