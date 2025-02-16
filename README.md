@@ -1,12 +1,35 @@
 # NeSI support documentation
 
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/nesi/support-docs?quickstart=1)
+# NeSI docs template
 
-[![Deploy to gh-pages](https://github.com/nesi/support-docs/actions/workflows/deploy.yml/badge.svg?branch=main&event=deployment_status)](https://github.com/nesi/support-docs/actions/workflows/deploy.yml)
+Replace this readme with info about the site.
 
-This repository contains the sources files for the NeSI support documentation.
+## First Time Setup
 
-Rendered pages are visible at [https://docs.nesi.org.nz](http://docs.nesi.org.nz).
+You will need to have Python **3.10** or later installed on your computer.
+
+Clone this repository and create a Python virtual environment using:
+
+```sh
+git clone https://github.com/nesi/nesi-mkdoc-template.git
+cd nesi-mkdoc-template
+python -m venv .venv
+source .venv/bin/activate
+pip3 install pip-tools
+pip-compile
+pip3 install -r requirements.txt
+```
+
+## Build and deploy
+
+```sh
+source .venv/bin/activate
+mkdocs serve -c
+```
+
+Take note of any warnings or errors.
+
+A link to the deployment will be printed once served
 
 ## Contents
 
