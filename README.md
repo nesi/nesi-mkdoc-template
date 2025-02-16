@@ -1,33 +1,24 @@
-# NeSI docs template
+# NeSI support documentation
 
-Replace this readme with info about the site.
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/nesi/support-docs?quickstart=1)
 
-## First Time Setup
+[![Deploy to gh-pages](https://github.com/nesi/support-docs/actions/workflows/deploy.yml/badge.svg?branch=main&event=deployment_status)](https://github.com/nesi/support-docs/actions/workflows/deploy.yml)
 
-You will need to have Python **3.10** or later installed on your computer.
+This repository contains the sources files for the NeSI support documentation.
 
-Clone this repository and create a Python virtual environment using:
+Rendered pages are visible at [https://docs.nesi.org.nz](http://docs.nesi.org.nz).
 
-```sh
-git clone https://github.com/nesi/nesi-mkdoc-template.git
-cd nesi-mkdoc-template
-python -m venv .venv
-source .venv/bin/activate
-pip3 install pip-tools
-pip-compile
-pip3 install -r requirements.txt
-```
+## Contents
 
-## Build and deploy
+The repository is organised using the following folders:
 
-```sh
-source .venv/bin/activate
-mkdocs serve -c
-```
+- `checks` : scripts intended to be run by CI,
+- `docs`: markdown files, structure determines categories and sections[^1],
+- `docs/assets`: non-template related files, e.g. images,
+- `overrides`: theme overides or extensions for page templates.
+- `overrides/partials`: Overrides and extensions for sub components.
 
-Take note of any warnings or errors.
-
-A link to the deployment will be printed once served.
+[^1]: A section or category can be replaced by an `index.md` file, this will replace the default nav with a page.
 
 ## Developer Documentation
 
@@ -50,7 +41,25 @@ Deployments of open pull requests can be viewed at [https://callumwalley.github.
 
 We are using the [mkdocs material theme](https://squidfunk.github.io/mkdocs-material/).
 
+## Analytics
 
-## Analyics
+The site uses [Google analytics](https://analytics.google.com/analytics/web/#/p424742084). You will need to ask a google workspace admin to add you to the project.
 
-Google Analytics can be set up.
+## Updating Dependencies
+
+Occasionally you may want to update the dependencies used by mkdocs to build and lint this site.
+
+Make a new branch and
+
+```sh
+pip-compile --allow-unsafe > requirements.txt
+pip install -r requirements.txt
+```
+
+Make sure to test it on a GitHub runner (not just locally), as this is the actual build environment.
+
+## Migration
+
+Migration of the Zendesk documentation is done using our [migration pipeline (NeSI internal GitLab](https://git.hpcf.nesi.org.nz/cwal219/migratedocs).
+
+Any one off filters (e.g. don't need to be checked every time, just when converting from ZD) should go there.
