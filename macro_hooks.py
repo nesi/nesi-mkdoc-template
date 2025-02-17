@@ -5,8 +5,6 @@ As opposed to `mkdocs_hooks.py` which works only in template step, (e.g. `overri
 If this is confusing, ask Cal to explain.
 """
 
-# Allows the use of {{ FOO }} variable in `docs/*.md`.
-
 
 def define_env(env):
     """
@@ -17,19 +15,3 @@ def define_env(env):
     - filter: a function with one of more arguments,
         used to perform a transformation
     """
-
-#     # add to the dictionary of variables available to markdown pages:
-#     env.variables.foo = "bar"
-    return
-
-
-# def on_pre_page_macros(env):
-#     return
-
-
-# def on_post_page_macros(env):
-#     return
-
-
-# def on_post_build(env):
-#     return
