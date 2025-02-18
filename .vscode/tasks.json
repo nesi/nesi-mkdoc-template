@@ -140,7 +140,7 @@
             "runOptions": {
                 "runOn": "folderOpen"
             },
-            "command": "bash .github/fetch_includes.sh",
+            "command": "bash .github/workflows/fetch_includes.sh",
             "problemMatcher": {
                 "severity": "info",
                 "pattern": {
