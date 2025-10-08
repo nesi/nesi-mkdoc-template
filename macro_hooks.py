@@ -5,6 +5,11 @@ As opposed to `mkdocs_hooks.py` which works only in template step, (e.g. `overri
 If this is confusing, ask Cal to explain.
 """
 
+import os
+import json
+
+module_list_path = os.getenv("MODULE_LIST_PATH", "docs/assets/module-list.json")
+
 
 def define_env(env):
     """
@@ -15,3 +20,6 @@ def define_env(env):
     - filter: a function with one of more arguments,
         used to perform a transformation
     """
+
+    # add to the dictionary of variables available to markdown pages:
+    env.variables.applications = json.load(open(module_list_path))

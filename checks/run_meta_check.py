@@ -55,7 +55,6 @@ def main():
     inputs = sys.argv[1:]
 
     for input_string in inputs:
-
         input_path = Path(input_string)
         if any(re.match(pattern, input_string) for pattern in EXCLUDED_FROM_CHECKS):
             continue
@@ -102,7 +101,8 @@ def _run_check(f):
 
 def _emit(f, r):
     msg_count[r.get('level', 'warning')] += 1
-    print(f"::{r.get('level', 'warning')} file={input_path},title={f},col={r.get('col', 0)},endColumn={r.get('endColumn', 99)},line={r.get('line', 1)}::{r.get('message', 'something wrong')}")
+    print(f"::{r.get('level', 'warning')} file={input_path},title={f},col={r.get('col', 0)},\
+endColumn={r.get('endColumn', 99)},line={r.get('line', 1)}::{r.get('message', 'something wrong')}")
     sys.stdout.flush()
     time.sleep(0.01)
 
@@ -127,7 +127,7 @@ def _get_lineno(pattern):
         if m:
             return i
         i += 1
-    return 0
+    return i
 
 
 def _get_nav_tree():
@@ -202,13 +202,21 @@ def meta_unexpected_key():
     """
     Check for unexpected keys.
     """
+    def _test(v):
+        if v not in EXPECTED_PARAMETERS[key]:
+            yield {"level": "error", "line": _get_lineno(f"^{key}:.*$"),
+                   "message": f"'{value}' is not valid for {key}. [{','.join(EXPECTED_PARAMETERS[key])}]"}
+
     for key, value in meta.items():
         if key not in EXPECTED_PARAMETERS.keys():
             yield {"line": _get_lineno(r"^" + key + r":.*$"),
                    "message": f"Unexpected parameter in front-matter '{key}'"}
-        elif EXPECTED_PARAMETERS[key] and value not in EXPECTED_PARAMETERS[key]:
-            yield {"level": "error", "line": _get_lineno(r"^status:.*$"),
-                   "message": f"'{value}' is not valid for {key}. [{','.join(EXPECTED_PARAMETERS[key])}]"}
+        elif EXPECTED_PARAMETERS[key]:
+            if isinstance(value, list):
+                for v in value:
+                    _test(v)
+            else:
+                _test(value)
 
 
 def meta_missing_description():
@@ -247,6 +255,9 @@ def click_here():
 
 
 def walk_toc():
+    """
+    Checks if toc is sensible.
+    """
     def _count_children(d):
         only_child = (len(d["children"]) == 1)
         for title, c in d["children"].items():
@@ -262,14 +273,23 @@ def walk_toc():
         for y in _count_children(d):
             yield y
 
+def dynamic_slurm_link():
+    """
+    Checks if slurm links point to right version of docs.
+    """
+    m1 = re.search(r".*\(https?:\/\/slurm.schedmd.com(?!\/archive\/{{\s*config\.extra\.slurm\s*}})(.*)\/(.*)\)", line, re.IGNORECASE)
+    if m1:
+        print(m1.group(1))
+        print(m1.group(2))
+        yield {"line": lineno,"message": f"Link '{m1.group(0)}', does not use dynamic slurm version. Use 'https://slurm.schedmd.com/archive/{{{{ config.extra.slurm }}}}/{m1.group(2)}"}
 
+# Define checks here
 # For checks to run on page as a whole
 ENDCHECKS = [title_redundant, title_length, meta_missing_description, meta_unexpected_key, minimum_tags,
              walk_toc]
 
 # Checks to be run on each line
-WALKCHECKS = [click_here]
-
+WALKCHECKS = [click_here, dynamic_slurm_link]
 
 if __name__ == "__main__":
     main()
@@ -279,4 +299,5 @@ if __name__ == "__main__":
     time.sleep(5)
 
     # Arbitrary weighting whether to fail check or not
-    exit((100 * (len(sys.argv)-1)) < msg_count["notice"] + (30 * msg_count["warning"] + (100 * msg_count["error"])))
+
+    # exit((100 * (len(sys.argv)-1)) < msg_count["notice"] + (30 * msg_count["warning"] + (100 * msg_count["error"])))

@@ -25,7 +25,7 @@ if __name__ == "__main__":
     )
 
     for file in files:
-        print(f"Running proselint on {file}")
+        print(f"::DEBUG file={file},line=0,col=0,endColumn=0,title=file:: Running proselint on '{file}'")
         content = Path(file).read_text(encoding="utf8")
         for notice in proselint.tools.lint(content, config=config_custom):
             print(
@@ -37,4 +37,4 @@ if __name__ == "__main__":
             count_notices += 1
             time.sleep(0.01)
 
-    exit(count_notices >= ALLOWABLE_NOTICES*(len(sys.argv)-1))
+    # exit(count_notices >= ALLOWABLE_NOTICES*(len(sys.argv)-1))

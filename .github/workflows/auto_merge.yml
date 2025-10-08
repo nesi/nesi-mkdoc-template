@@ -5,11 +5,11 @@ on:
     - cron: '30 12 * * *' # Should run 30 min after get remote assets.
 env:
   GH_TOKEN: ${{ github.token }}
-  TARGET_REPO: <repo-name>
+  TARGET_REPO: nesi/support-docs
   LABEL_NAME: auto_merge
 jobs:
   automerge:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
     - uses: actions/checkout@v4
       with:
