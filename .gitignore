@@ -3,3 +3,5 @@ production/*
 **.pyc
 .venv/*
 dictionary.dic
+docs/*
+!docs/assets
