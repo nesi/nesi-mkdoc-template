@@ -156,6 +156,22 @@ There are various flavors.
     Automatically added to pages with the `status:deprecated`, should be used when page is out of date.
     *This page is rubbish!*
 
+!!! time "30 Minutes (for use in tutorial pages)"
+
+!!! objectives
+    - For use in tutorials
+    - learning goal one.
+    - learning goal two.
+
+!!! keypoints
+    - For use in tutorials
+    - should summarize learning goal one.
+    - should summarize learning goal two.
+
+!!! next
+    - For use in tutorials
+    - should link to next lesson.
+
 ??? warning "Extra Admonitions you probably won't need"
     !!! note
         Use `info` instead of this.
@@ -172,116 +188,6 @@ There are various flavors.
     !!! quote
         Havn't seen a reason to use this yet.
     
-    !!! pied-piper
-        don't use this (unless Dini).
-    
-    !!! desktop-download-24
-        don't use this (unless Dini).
-    
-    !!! magnifying-glass
-        don't use this (unless Dini).
-    
-    !!! microscope
-        don't use this (unless Dini).
-    
-    !!! vial-virus
-        don't use this (unless Dini).
-    
-    !!! database
-        don't use this (unless Dini).
-    
-    !!! folder-open
-        don't use this (unless Dini).
-    
-    !!! backward
-        don't use this (unless Dini).
-    
-    !!! jupyter
-        don't use this (unless Dini).
-    
-    !!! terminal
-        don't use this (unless Dini).
-    
-    !!! r-project
-        don't use this (unless Dini).
-    
-    !!! calendar-days
-        don't use this (unless Dini).
-    
-    !!! bell
-        don't use this (unless Dini).
-    
-    !!! comment-dots
-        don't use this (unless Dini).
-    
-    !!! check-to-slot
-        don't use this (unless Dini).
-    
-    !!! square-xmark
-        don't use this (unless Dini).
-    
-    !!! rectangle-list
-        don't use this (unless Dini).
-    
-    !!! screwdriver-wrench
-        don't use this (unless Dini).
-    
-    !!! linux
-        don't use this (unless Dini).
-    
-    !!! code-compare
-        don't use this (unless Dini).
-    
-    !!! heading
-        don't use this (unless Dini).
-    
-    !!! space-awesome
-        don't use this (unless Dini).
-    
-    !!! stethoscope
-        don't use this (unless Dini).
-    
-    !!! key
-        don't use this (unless Dini).
-    
-    !!! users-line
-        don't use this (unless Dini).
-    
-    !!! file-code
-        don't use this (unless Dini).
-    
-    !!! hand-holding-dollar
-        don't use this (unless Dini).
-    
-    !!! circle-question
-        don't use this (unless Dini).
-    
-    !!! microphone
-        don't use this (unless Dini).
-    
-    !!! tower-observation
-        don't use this (unless Dini).
-    
-    !!! circle-info
-        don't use this (unless Dini).
-    
-    !!! icon--python
-        don't use this (unless Dini).
-    
-    !!! quote-right
-        don't use this (unless Dini).
-    
-    !!! image
-        don't use this (unless Dini).
-    
-    !!! table
-        don't use this (unless Dini).
-    
-    !!! glass-chart
-        don't use this (unless Dini).
-    
-    !!! file-export
-        don't use this (unless Dini).
 
 ## Code
 
@@ -468,8 +374,9 @@ Instead of
 Use
 
 <pre><code>
-[sacct](https://slurm.schedmd.com/archive/{{config.extra.slurm}}/sacct.html#lbAI)
+{% raw %}[sacct](https://slurm.schedmd.com/archive/{{config.extra.slurm}}/sacct.html#lbAI){% endraw %}
 </code></pre>
+
 
 The current version of Slurm can be changed in the [`mkdocs.yml`](https://github.com/nesi/support-docs/blob/181a3d96716795a04e2c1084be8d1d9b7b45cacf/mkdocs.yml#L67) file.
 
@@ -627,11 +534,15 @@ There are a few includes you may want to use.
 
 Here is an example using dynamically using the module version information.
 
-`module load ANSYS/{{ applications.ANSYS.default }}`
+```sh
+module load ANSYS/{{ applications.ANSYS.default }}
+```
 
 ```md
 {% raw %}
-`module load ANSYS/{{ applications.ANSYS.default }}`
+```sh
+module load ANSYS/{{ applications.ANSYS.default }}
+```
 {% endraw %}
 ```
 
